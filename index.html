@@ -267,12 +267,12 @@
     </div>
   </section>
 
-  <section id="projects">
+ <section id="projects">
     <div class="wrap">
       <p class="eyebrow">Selected work</p>
       <h2>Projects</h2>
       <p class="section-intro">
-        Three pipelines covering the core of the job: getting raw data in reliably, orchestrating it on a schedule, and modeling it for analytics at scale.
+        Four pipelines covering the core of the job: getting raw data in reliably, orchestrating it on a schedule, modeling it for analytics at scale, and tying it all together into one live, end-to-end system.
       </p>
 
       <div class="projects">
@@ -307,6 +307,17 @@
           <div class="pills"><span class="pill">BigQuery</span><span class="pill">dbt</span><span class="pill">SQL</span></div>
           <div class="card-links">
             <a href="https://github.com/Samuel-Adewusi/dbt-ecommerce-warehouse" target="_blank" rel="noopener">View repo →</a>
+          </div>
+        </article>
+        
+        <article class="card">
+          <span class="tag">Capstone · Kafka · Airflow · dbt</span>
+          <h3>Event-Driven E-Commerce Pipeline (Capstone)</h3>
+          <p>Ties my other three projects into one stack: a producer streams simulated e-commerce events to Kafka, Airflow polls and loads them into BigQuery every 5 minutes, dbt models them into a star schema, and a Streamlit dashboard queries the marts live. Run end-to-end against real infrastructure.</p>
+          <div class="mini-flow"><b>flow:</b> Kafka → Airflow (5-min micro-batch) → BigQuery → dbt marts → dashboard</div>
+          <div class="pills"><span class="pill">Kafka</span><span class="pill">Airflow</span><span class="pill">dbt</span><span class="pill">BigQuery</span><span class="pill">Streamlit</span></div>
+          <div class="card-links">
+            <a href="https://github.com/Samuel-Adewusi/realtime-ecommerce-capstone" target="_blank" rel="noopener">View repo →</a>
           </div>
         </article>
 
