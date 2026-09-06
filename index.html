@@ -1,385 +1,268 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Samuel Adewusi — Data Engineer</title>
-<meta name="description" content="Samuel Adewusi — Data Engineer building reliable, scalable data pipelines.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0A1628;
-    --bg-alt:#0F2038;
-    --panel:#122744;
-    --ink:#E7ECF3;
-    --muted:#8FA1BC;
-    --muted-2:#61748F;
-    --amber:#F0A857;
-    --teal:#5FD7C6;
-    --line:rgba(143,161,188,0.16);
-    --line-strong:rgba(143,161,188,0.30);
-    --mono:'IBM Plex Mono', ui-monospace, monospace;
-    --sans:'IBM Plex Sans', system-ui, sans-serif;
-    --maxw:1100px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--bg);
-    color:var(--ink);
-    font-family:var(--sans);
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  body::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    background-image:
-      linear-gradient(var(--line) 1px, transparent 1px),
-      linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size:48px 48px;
-    opacity:0.35;
-    z-index:0;
-  }
-  a{color:inherit;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px; position:relative; z-index:1;}
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    color:var(--teal);
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin:0 0 14px;
-  }
-  .eyebrow::before{content:"//"; color:var(--muted-2);}
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Adewusi Samuel Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
 
-  /* NAV */
-  header.nav{
-    position:sticky; top:0; z-index:50;
-    background:rgba(10,22,40,0.86);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{
-    max-width:var(--maxw); margin:0 auto; padding:16px 24px;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .logo{
-    font-family:var(--mono); font-weight:600; font-size:15px; letter-spacing:0.02em;
-    text-decoration:none; color:var(--ink);
-  }
-  .logo span{color:var(--amber);}
-  nav.links{display:flex; gap:28px; align-items:center;}
-  nav.links a{
-    font-family:var(--mono); font-size:13px; text-decoration:none; color:var(--muted);
-    letter-spacing:0.02em;
-    transition:color .15s ease;
-  }
-  nav.links a:hover, nav.links a:focus-visible{color:var(--ink);}
-  .btn{
-    font-family:var(--mono); font-size:13px; letter-spacing:0.02em;
-    padding:9px 16px; border-radius:3px; text-decoration:none;
-    border:1px solid var(--line-strong);
-    display:inline-flex; align-items:center; gap:8px;
-  }
-  .btn-primary{background:var(--amber); color:#0A1628; border-color:var(--amber); font-weight:600;}
-  .btn-primary:hover{background:#f5b76c;}
-  .btn-ghost{color:var(--ink);}
-  .btn-ghost:hover{border-color:var(--muted); }
-  a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:2px;}
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-  /* HERO */
-  .hero{padding:88px 0 64px; position:relative;}
-  .hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;}
-  h1{
-    font-family:var(--mono);
-    font-size:clamp(34px, 5vw, 52px);
-    line-height:1.12;
-    margin:0 0 20px;
-    letter-spacing:-0.01em;
-  }
-  h1 .role{color:var(--muted);}
-  .hero p.lede{
-    font-size:17px; color:var(--muted); max-width:52ch; margin:0 0 32px;
-  }
-  .hero-cta{display:flex; gap:12px; flex-wrap:wrap; margin-bottom:36px;}
-  .hero-meta{display:flex; gap:22px; flex-wrap:wrap; font-family:var(--mono); font-size:12.5px; color:var(--muted-2);}
-  .hero-meta a{text-decoration:none; color:var(--muted); border-bottom:1px dotted var(--line-strong);}
-  .hero-meta a:hover{color:var(--teal); border-color:var(--teal);}
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
 
-  /* PIPELINE SIGNATURE DIAGRAM */
-  .pipeline-card{
-    background:var(--panel);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:22px 20px 26px;
-  }
-  .pipeline-card .cap{
-    font-family:var(--mono); font-size:11px; color:var(--muted-2);
-    letter-spacing:0.08em; text-transform:uppercase; margin-bottom:14px;
-  }
-  svg.pipeline{width:100%; height:auto; display:block;}
-  .pipeline text{font-family:var(--mono); fill:var(--muted); font-size:10.5px;}
-  .pipeline .node-label{fill:var(--ink); font-size:11px; font-weight:600;}
-  .pipeline .node-rect{fill:var(--bg-alt); stroke:var(--line-strong); stroke-width:1;}
-  .pipeline .track{stroke:var(--line-strong); stroke-width:1.5; fill:none;}
-  .pipeline .dot{fill:var(--amber);}
-  .pipeline .dot2{fill:var(--teal);}
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo"><strong>Samuel's</strong> Portfolio</a>
+									<ul class="icons">
+										<li><a href="https://www.linkedin.com/in/s-adewusi-7a167840b/" class="icon brands fa-linkedin"><span class="label">linkedin</span></a></li>
+										<li><a href="https://github.com/Samuel-Adewusi" class="icon brands fa-github"><span class="label">github</span></a></li>
+										
+									</ul>
+								</header>
 
-  section{padding:72px 0; border-top:1px solid var(--line); position:relative;}
-  h2{
-    font-family:var(--mono); font-size:26px; margin:0 0 8px; letter-spacing:-0.01em;
-  }
-  .section-intro{color:var(--muted); max-width:60ch; margin:0 0 40px;}
 
-  /* PROJECTS */
-  .projects{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
-  @media (max-width:900px){ .projects{grid-template-columns:1fr;} .hero-grid{grid-template-columns:1fr;} }
-  .card{
-    background:var(--panel); border:1px solid var(--line); border-radius:6px;
-    padding:22px 20px; display:flex; flex-direction:column; gap:14px;
-  }
-  .card .tag{font-family:var(--mono); font-size:11px; color:var(--muted-2); letter-spacing:0.06em; text-transform:uppercase;}
-  .card h3{font-family:var(--mono); font-size:16.5px; margin:0; line-height:1.3;}
-  .card p{color:var(--muted); font-size:14px; margin:0; flex:1;}
-  .pills{display:flex; flex-wrap:wrap; gap:6px;}
-  .pill{
-    font-family:var(--mono); font-size:10.5px; color:var(--teal);
-    border:1px solid rgba(95,215,198,0.35); background:rgba(95,215,198,0.06);
-    padding:3px 8px; border-radius:100px;
-  }
-  .card-links{display:flex; gap:14px; margin-top:4px;}
-  .card-links a{
-    font-family:var(--mono); font-size:12.5px; text-decoration:none; color:var(--ink);
-    border-bottom:1px solid var(--line-strong);
-  }
-  .card-links a:hover{color:var(--amber); border-color:var(--amber);}
-  .mini-flow{
-    font-family:var(--mono); font-size:10.5px; color:var(--muted-2);
-    background:var(--bg-alt); border:1px solid var(--line); border-radius:4px;
-    padding:8px 10px; letter-spacing:0.01em;
-  }
-  .mini-flow b{color:var(--muted);}
 
-  /* SKILLS */
-  .skills-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
-  @media (max-width:750px){.skills-grid{grid-template-columns:1fr;}}
-  .skill{
-    border:1px solid var(--line); border-radius:6px; padding:20px;
-    background:var(--bg-alt);
-  }
-  .skill .num{font-family:var(--mono); font-size:11px; color:var(--amber); margin-bottom:8px; display:block;}
-  .skill h4{font-family:var(--mono); font-size:15px; margin:0 0 8px;}
-  .skill p{color:var(--muted); font-size:13.5px; margin:0;}
+							<!-- Banner -->
+								<section id="banner">
+									<div class="content">
+										<header>
+											<h2>Hi, I’m Adewusi Samuel<br />
+											</h2>
+											<p>Data Analyst</p>
+										</header>
+										<p align="justify">I’m a results-driven Data Analyst with 6 years of experience transforming complex data into actionable business insights. Skilled in SQL, Python, Power BI, data visualization, data validation, process improvement, and reporting automation, with hands-on experience across AWS, Snowflake, and Databricks, I have a proven ability to identify business needs, analyze trends and performance metrics, improve data accuracy, and develop dashboards and analytical solutions that increase operational efficiency.</p>
+									</header>
+									<p align="justify">In my current role, I analyze large, complex datasets using SQL and Python to identify trends, anomalies, and business insights that support operational and strategic decision-making. I develop and maintain interactive Power BI dashboards and KPI reports, build and optimize complex SQL queries involving joins, CTEs, subqueries, and window functions, and automate recurring data preparation and reporting workflows to reduce manual effort and improve the consistency and timeliness of business reporting.</p>
+									</header>									
+									<p align="justify">I’m experienced in partnering with technical and non-technical stakeholders to translate data findings into clear, practical recommendations that support informed business decisions. My core competencies include data analysis and visualization, database management and SQL proficiency, and comprehensive business intelligence, using tools such as Python, SQL, Power BI, Excel, SSIS, SSRS, and SSMS to turn raw data into reliable, decision-ready insights.</p>
 
-  /* CONTACT */
-  .contact-box{
-    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px;
-    background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:36px;
-  }
-  .contact-box p{color:var(--muted); max-width:48ch; margin:0 0 18px;}
-  .contact-links{display:flex; gap:14px; flex-wrap:wrap;}
+									<ul class="actions">
+											<li><a href="https://www.linkedin.com/in/s-adewusi-7a167840b/" class="button big">Learn More</a></li>
+										</ul>
+									</div>
+									<span class="image object">
+										<img src="images/Profile.jpg" alt="" />
+									</span>
+								</section>
 
-  footer{
-    border-top:1px solid var(--line); padding:28px 0; font-family:var(--mono);
-    font-size:12px; color:var(--muted-2); text-align:center;
-  }
-</style>
-</head>
-<body>
+	<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>PROJECTS</h2>
+									</header>
+									<div class="posts">
+										<article>
+											<a href="https://github.com/Samuel-Adewusi/Maven-Toys-Sales-Analysis" class="image"><img src="images/MavenToys.png" alt="" /></a>
+											<h3>Maven Toys Sales Analysis - SQL</h3>
+											<p align="justify">A SQL project that aims to provide Maven Toys, a fictional chain of toy stores in Mexico, with insights into product profitability, seasonal sales trends, stock-out impact, and inventory efficiency.</p>
+											<ul class="actions">
+												<li><a href="https://github.com/Samuel-Adewusi/Maven-Toys-Sales-Analysis" class="button">VIEW PROJECT</a></li>
+											</ul>
+										</article>								
+										<article>
+											<a href="https://github.com/Samuel-Adewusi/New-York-City-Traffic-Accidents" class="image"><img src="images/NYCTraffic.png" alt="" /></a>
+											<h3>New York City Traffic Accidents - SQL & Power BI</h3>
+											<p align="justify">A SQL and Power BI project that examines New York City traffic accident data, identifying key patterns, contributing factors, and potential areas for safety improvement across the city.</p>
+											<ul class="actions">
+												<li><a href="https://github.com/Samuel-Adewusi/New-York-City-Traffic-Accidents" class="button">View Project</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="https://github.com/Samuel-Adewusi/Northwind-Traders" class="image"><img src="images/Northwind.png" alt="" /></a>
+											<h3>Northwind Traders Analysis - Power BI</h3>
+											<p align="justify">A Power BI project that examines sales and order data for Northwind Traders, a gourmet food supplier, simplifying complex information to facilitate strategic decision-making.</p>
+											<ul class="actions">
+												<li><a href="https://github.com/Samuel-Adewusi/Northwind-Traders" class="button">View Project</a></li>
+											</ul>
+										</article>
+										<article>
+											<a href="https://github.com/Samuel-Adewusi/etl-weather-pipeline" class="image"><img src="images/WeatherETL.svg" alt="" /></a>
+											<h3>ETL Weather Pipeline - Python & PostgreSQL</h3>
+											<p align="justify">A raw-to-warehouse ETL pipeline that pulls hourly weather data from the Open-Meteo API, cleans and validates it in Python, and loads it into PostgreSQL with upsert logic, containerized with Docker and tested with pytest.</p>
+											<ul class="actions">
+												<li><a href="https://github.com/Samuel-Adewusi/etl-weather-pipeline" class="button">View Project</a></li>
+											</ul>
+										</article>
+										
+									</div>
+								</section>
 
-<header class="nav">
-  <div class="nav-inner">
-    <a class="logo" href="#top">samuel<span>.</span>adewusi</a>
-    <nav class="links">
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-      <a class="btn btn-ghost" href="https://acrobat.adobe.com/id/urn:aaid:sc:EU:b6f5831c-6c98-466d-9b57-e1cd30290a41" target="_blank" rel="noopener">Resume ↓</a>
-    </nav>
-  </div>
-</header>
+						<!-- Section -->
+						<section>
+							<header class="major">
+								<h2>SKILLS</h2>
+							</header>
+							<div class="features">
+								<article>
+								</div>
+							</section>
+						
+						<!-- Section -->
+						<section>
+							<header class="major">
+								<h2>Technical Skills</h2>
+							</header>
+							<div class="features">
+								<article>
+									
+									<div class="content">
+										<h3>Data Analysis</h3>
+										<p align="justify">In data analysis, I uncover meaningful insights by systematically examining and interpreting data. My approach involves employing various analytical techniques to extract valuable information that informs decision-making processes.</p>
+									</div>
+								</article>
+								<article>
+									
+									<div class="content">
+										<h3>Data Cleaning</h3>
+										<p align="justify">Data cleaning is a crucial step in my workflow. I meticulously identify and rectify errors, inconsistencies, and missing values to ensure the integrity and accuracy of the data I work with.</p>
+									</div>
+								</article>
+								<article>
+								
+									<div class="content">
+										<h3>Data Visualization</h3>
+										<p align="justify">I bring data to life through effective visualization. Utilizing graphs, charts, and dashboards, I present complex information in a visually accessible manner, enabling stakeholders to grasp key trends and patterns effortlessly.</p>
+									</div>
+								</article>
+								<article>
+								
+									<div class="content">
+										<h3>Data Modelling</h3>
+										<p align="justify">In data modeling, I design and implement robust models that capture the underlying structure of the data. This allows for predictive analysis and facilitates informed decision-making based on the patterns identified.</p>
+									</div>
+								</article>
+								<article>
+								
+									<div class="content">
+										<h3>Data Profiling</h3>
+										<p align="justify">Data profiling is a fundamental part of my process. I systematically examine and summarize the characteristics of the data, identifying patterns, outliers, and potential issues to guide further analysis and decision-making.</p>
+									</div>
+								</article>
+								<article>
+									
+									<div class="content">
+										<h3>Data Validation</Details></h3>
+										<p align="justify">Ensuring data accuracy is paramount. I rigorously validate data against predefined criteria to confirm its reliability, supporting the generation of trustworthy insights that stakeholders can confidently rely on.</p>
+									</div>
+								</article>
+							</div>
+						</section>
+					</ul>
+													
+				</header>
 
-<main id="top">
-  <section class="hero" style="border-top:none; padding-top:72px;">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Data Engineer</p>
-        <h1>Samuel Adewusi<br><span class="role">builds pipelines data teams can trust.</span></h1>
-        <p class="lede">
-          I design and build reliable, scalable ETL/ELT pipelines — extracting raw data, cleaning and validating it in code, and loading it into warehouses modeled for fast, trustworthy analytics. I orchestrate workflows with Airflow, transform with dbt, and deploy with Docker across cloud platforms.
-        </p>
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="#projects">View projects</a>
-          <a class="btn btn-ghost" href="#contact">Get in touch</a>
-        </div>
-        <div class="hero-meta">
-          <a href="https://github.com/Samuel-Adewusi" target="_blank" rel="noopener">github.com/Samuel-Adewusi</a>
-          <a href="https://www.linkedin.com/in/samuel-adewusi-7a167840b/" target="_blank" rel="noopener">linkedin.com/in/s-adewusi</a>
-          <a href="mailto:samueladewusi@icloud.com">samueladewusi@icloud.com</a>
-        </div>
-      </div>
+					<!-- Section -->
+						<section>
+							<header class="major">
+								<h2>Soft Skills</h2>
+							</header>
+							<div class="features">
+								<article>
+									
+									<div class="content">
+										<h3>Critical Thinking</h3>
+										<p align="justify">As a data analyst, critical thinking is my guide. I meticulously evaluate data quality, question assumptions, and consider alternative perspectives, ensuring my analyses are robust and insightful.</p>
+									</div>
+								</article>
+								<article>
+									
+									<div class="content">
+										<h3>Communication</h3>
+										<p align="justify">Effective communication is paramount in my role as a data analyst. I convey complex findings clearly and concisely, tailoring my message to diverse audiences, whether technical or non-technical stakeholders.</p>
+									</div>
+								</article>
+								<article>
+								
+									<div class="content">
+										<h3>Presentation</h3>
+										<p align="justify">In presentations, I strive to make complex data accessible. I focus on delivering clear, impactful messages, utilizing visuals and narratives to ensure that my audience grasps the significance of the insights.</p>
+									</div>
+								</article>
+								<article>
+								
+									<div class="content">
+										<h3>Team Player</h3>
+										<p align="justify">As a team player, collaboration is ingrained in my approach. I actively engage with colleagues, share insights, and contribute to a collective understanding, fostering a collaborative environment that enhances our analytical capabilities.</p>
+									</div>
+								</article>
+								<article>
+								
+									<div class="content">
+										<h3>Problem Solving</h3>
+										<p align="justify">Problem-solving is at the core of my role. I break down complex issues into manageable components, formulating data-driven solutions that address root causes and contribute to effective decision-making.</p>
+									</div>
+								</article>
+								<article>
+									
+									<div class="content">
+										<h3>Attention to Details</Details></h3>
+										<p align="justify">As a data analyst, meticulous attention to detail is my hallmark. I understand the significance of every data point and ensure precision in every analysis. From data cleaning to model implementation, I meticulously review each step to identify potential errors or inconsistencies.</p>
+									</div>
+								</article>
+							</div>
+						</section>
 
-      <div class="pipeline-card">
-        <div class="cap">// pipeline overview</div>
-        <svg class="pipeline" viewBox="0 0 380 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagram showing data flowing through extract, validate, transform, and load stages into a warehouse">
-          <path class="track" d="M40,40 L340,40" />
-          <path class="track" d="M40,40 L40,105" />
-          <path class="track" d="M40,105 L340,105" />
-          <path class="track" d="M340,105 L340,175" />
-          <path class="track" d="M40,175 L340,175" />
+						</div>
+					</div>
 
-          <!-- Nodes row 1 -->
-          <rect class="node-rect" x="14" y="24" width="52" height="32" rx="3"/>
-          <text class="node-label" x="40" y="44" text-anchor="middle">extract</text>
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
 
-          <rect class="node-rect" x="314" y="24" width="52" height="32" rx="3"/>
-          <text class="node-label" x="340" y="44" text-anchor="middle">validate</text>
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
 
-          <!-- Nodes row 2 -->
-          <rect class="node-rect" x="14" y="89" width="52" height="32" rx="3"/>
-          <text class="node-label" x="40" y="109" text-anchor="middle">transform</text>
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">Projects</a></li>
+										<li><a href="softskills.html">Skills</a></li>
+										<li><a href="Adewusi_Samuel_DA.pdf">Download Resume</a></li>
+		
+									</nav>
 
-          <rect class="node-rect" x="314" y="89" width="52" height="32" rx="3"/>
-          <text class="node-label" x="340" y="109" text-anchor="middle">load</text>
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch with me</h2>
+									</header>
+									<p align="justify">I’m interested in a Data Analyst role in an organization where I can showcase my skills, take more responsibilities, continue to learn, an organization that I can grow with, where my work will be highly beneficial to the organization.</p>
+									<ul class="contact">
+										<li class="icon solid fa-envelope">samadewusi95@gmail.com</li>
+										<li class="icon solid fa-phone"> +1 (346) 562-2884</li>
+									</li>
+									</ul>
+								</section>
 
-          <!-- Node row 3 -->
-          <rect class="node-rect" x="150" y="159" width="80" height="32" rx="3" stroke="var(--amber)"/>
-          <text class="node-label" x="190" y="179" text-anchor="middle">warehouse</text>
+						</div>
+					</div>
 
-          <circle class="dot" r="3.4">
-            <animateMotion dur="4.5s" repeatCount="indefinite"
-              path="M40,40 L340,40 L340,105 L40,105 L40,175 L340,175" />
-          </circle>
-          <circle class="dot2" r="3.4">
-            <animateMotion dur="4.5s" begin="1.5s" repeatCount="indefinite"
-              path="M40,40 L340,40 L340,105 L40,105 L40,175 L340,175" />
-          </circle>
-        </svg>
-      </div>
-    </div>
-  </section>
+			</div>
 
- <section id="projects">
-    <div class="wrap">
-      <p class="eyebrow">Selected work</p>
-      <h2>Projects</h2>
-      <p class="section-intro">
-        Four pipelines covering the core of the job: getting raw data in reliably, orchestrating it on a schedule, modeling it for analytics at scale, and tying it all together into one live, end-to-end system.
-      </p>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-      <div class="projects">
-
-        <article class="card">
-          <span class="tag">ETL · Python · Docker</span>
-          <h3>Raw-to-Warehouse ETL Pipeline</h3>
-          <p>Extracts a messy public dataset, cleans and validates it with testable Python functions, and loads it into Postgres with upsert logic — containerized so it runs the same anywhere.</p>
-          <div class="mini-flow"><b>flow:</b> API/CSV → extract.py → transform.py → load.py → Postgres</div>
-          <div class="pills"><span class="pill">Python</span><span class="pill">pandas</span><span class="pill">Postgres</span><span class="pill">Docker</span></div>
-          <div class="card-links">
-            <a href="https://github.com/Samuel-Adewusi/etl-weather-pipeline" target="_blank" rel="noopener">View repo →</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <span class="tag">Orchestration · Airflow</span>
-          <h3>Scheduled Pipeline with Airflow</h3>
-          <p>Wraps an extract–validate–transform–load flow in an Airflow DAG with explicit task dependencies, retries, a data-quality gate, and failure alerts — not just a script on a cron job.</p>
-          <div class="mini-flow"><b>flow:</b> extract → validate → transform → load → notify (DAG, daily)</div>
-          <div class="pills"><span class="pill">Airflow</span><span class="pill">Python</span><span class="pill">Postgres</span></div>
-          <div class="card-links">
-            <a href="https://github.com/Samuel-Adewusi/airflow-weather-orchestration" target="_blank" rel="noopener">View repo →</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <span class="tag">Warehouse · dbt · SQL</span>
-          <h3>Dimensional Model on BigQuery + dbt</h3>
-          <p>Loads a larger dataset into BigQuery and builds a star schema — fact and dimension tables — through staged dbt models with tests and generated documentation.</p>
-          <div class="mini-flow"><b>flow:</b> raw → staging → intermediate → marts (fct/dim) → BI</div>
-          <div class="pills"><span class="pill">BigQuery</span><span class="pill">dbt</span><span class="pill">SQL</span></div>
-          <div class="card-links">
-            <a href="https://github.com/Samuel-Adewusi/dbt-ecommerce-warehouse" target="_blank" rel="noopener">View repo →</a>
-          </div>
-        </article>
-        
-        <article class="card">
-          <span class="tag">Capstone · Kafka · Airflow · dbt</span>
-          <h3>Event-Driven E-Commerce Pipeline (Capstone)</h3>
-          <p>Ties my other three projects into one stack: a producer streams simulated e-commerce events to Kafka, Airflow polls and loads them into BigQuery every 5 minutes, dbt models them into a star schema, and a Streamlit dashboard queries the marts live. Run end-to-end against real infrastructure.</p>
-          <div class="mini-flow"><b>flow:</b> Kafka → Airflow (5-min micro-batch) → BigQuery → dbt marts → dashboard</div>
-          <div class="pills"><span class="pill">Kafka</span><span class="pill">Airflow</span><span class="pill">dbt</span><span class="pill">BigQuery</span><span class="pill">Streamlit</span></div>
-          <div class="card-links">
-            <a href="https://github.com/Samuel-Adewusi/realtime-ecommerce-capstone" target="_blank" rel="noopener">View repo →</a>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="wrap">
-      <p class="eyebrow">Toolbox</p>
-      <h2>Skills</h2>
-      <p class="section-intro">The tools I use to move data from messy and scattered to clean, modeled, and reliable.</p>
-
-      <div class="skills-grid">
-        <div class="skill">
-          <span class="num">01</span>
-          <h4>Programming &amp; SQL</h4>
-          <p>Python for pipeline logic (pandas, SQLAlchemy, requests); SQL for transformation and analysis, including window functions and query optimization.</p>
-        </div>
-        <div class="skill">
-          <span class="num">02</span>
-          <h4>Orchestration &amp; Transformation</h4>
-          <p>Airflow and Prefect for scheduling and dependency management; dbt for version-controlled, tested SQL transformations.</p>
-        </div>
-        <div class="skill">
-          <span class="num">03</span>
-          <h4>Cloud &amp; Infrastructure</h4>
-          <p>AWS / GCP / Azure for storage and compute; Snowflake and BigQuery for warehousing; Docker for reproducible deployments.</p>
-        </div>
-        <div class="skill">
-          <span class="num">04</span>
-          <h4>Data Modeling &amp; CI/CD</h4>
-          <p>Star and snowflake schema design for analytics-ready data; GitHub Actions for testing and validating pipeline code before deploy.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="wrap">
-      <p class="eyebrow">Let's talk</p>
-      <h2 style="margin-bottom:24px;">Contact</h2>
-      <div class="contact-box">
-        <div>
-          <p>I'm looking for a Data Engineer role where I can build and maintain the pipelines and infrastructure that power an organization's data — with room to grow into more complex, distributed systems over time.</p>
-        </div>
-        <div class="contact-links">
-          <a class="btn btn-primary" href="mailto:samueladewusi@icloud.com">Email me</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/s-adewusi-7a167840b/" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn btn-ghost" href="https://github.com/Samuel-Adewusi" target="_blank" rel="noopener">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  © <span id="year"></span> Samuel Adewusi — built with HTML/CSS
-</footer>
-
-<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-</script>
-</body>
+	</body>
 </html>
